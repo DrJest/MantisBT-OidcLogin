@@ -1,11 +1,12 @@
 Ti stiamo reindirizzando verso la pagina di login di MantisBT...
 <br />
-Se non succede nulla, clicca <a href="<?php echo $url; ?>">qui</a>
+Se non succede nulla, clicca <a id="link">qui</a>
 
 <script>
   const queryString = window.location.search.substring(1);
   const baseUrl = window.location.href.split('?')[0].replace('oidc.html', '');
   const url = baseUrl + 'plugin.php?page=OidcLogin/login&' + queryString;
+  document.querySelector('#link').setAttribute('href', url);
   setTimeout(() => {
     location.href = url;
   }, 100);
