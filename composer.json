@@ -1,0 +1,13 @@
+{
+    "name": "sinapsys/mantisbt-oidc-login",
+    "type": "project",
+    "require": {
+        "jumbojett/openid-connect-php": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Simone Albano",
+            "email": "simone@drjest.dev"
+        }
+    ]
+}
