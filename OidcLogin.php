@@ -31,21 +31,8 @@ class OidcLoginPlugin extends MantisPlugin
   function hooks()
   {
     return array(
-      'EVENT_LAYOUT_RESOURCES' => 'scripts',
-      'EVENT_CORE_READY' => 'copy_oidc_file'
+      'EVENT_LAYOUT_RESOURCES' => 'scripts'
     );
-  }
-
-  function copy_oidc_file()
-  {
-    global $g_absolute_path;
-
-    $oidc_file = $g_absolute_path . 'oidc.html';
-    $src_file = dirname(__FILE__) . '/files/oidc.html';
-
-    if (!file_exists($oidc_file)) {
-      @copy($src_file, $oidc_file);
-    }
   }
 
   function scripts()
@@ -91,5 +78,29 @@ class OidcLoginPlugin extends MantisPlugin
     $t_redirect_url = config_get_global('default_home_page');
 
     header('Location: ' . $t_redirect_url);
+  }
+
+  function install()
+  {
+    global $g_absolute_path;
+
+    $oidc_file = $g_absolute_path . 'oidc.html';
+    $src_file = dirname(__FILE__) . '/files/oidc.html';
+
+    if (!file_exists($oidc_file)) {
+      return copy($src_file, $oidc_file);
+    }
+
+    return true;
+  }
+
+  function uninstall()
+  {
+    global $g_absolute_path;
+
+    $oidc_file = $g_absolute_path . 'oidc.html';
+    if (file_exists($oidc_file)) {
+      @unlink($oidc_file);
+    }
   }
 }
