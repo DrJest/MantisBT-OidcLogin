@@ -10,7 +10,7 @@ $t_username_claim = plugin_config_get('username_claim');
 
 ?>
 
-<form action="<?php echo plugin_page('config_update') ?>" method="post">
+<form action="<?php echo plugin_page('config_update') ?>" method="post" style="padding: 12px;">
   <?php echo form_security_field('plugin_OidcLogin_config_update') ?>
   <div class="form-group">
     <label for="discover_url">Discover URL</label>

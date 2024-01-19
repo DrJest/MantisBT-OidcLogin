@@ -39,8 +39,6 @@ class OidcLoginPlugin extends MantisPlugin
   function copy_oidc_file()
   {
     global $g_absolute_path;
-    ini_set("display_errors", "1");
-    error_reporting(E_ALL);
 
     $oidc_file = $g_absolute_path . 'oidc.html';
     $src_file = dirname(__FILE__) . '/files/oidc.html';
@@ -91,9 +89,6 @@ class OidcLoginPlugin extends MantisPlugin
     auth_login_user($user_id);
 
     $t_redirect_url = config_get_global('default_home_page');
-    if (ON == config_get_global('redirect_delay')) {
-      $t_redirect_url .= '?delay=' . config_get_global('redirect_delay_interval');
-    }
 
     header('Location: ' . $t_redirect_url);
   }
