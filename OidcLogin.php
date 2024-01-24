@@ -44,11 +44,21 @@ class OidcLoginPlugin extends MantisPlugin
   {
     global $g_path;
 
+    $secret = plugin_config_get('client_secret');
+
+    if (plugin_config_get('auth_mode') == 'pkce') {
+      $secret = null;
+    }
+
     $oidc = new OpenIDConnectClient(
       plugin_config_get('discover_url'),
       plugin_config_get('client_id'),
-      plugin_config_get('client_secret')
+      $secret
     );
+
+    if (plugin_config_get('auth_mode') == 'pkce') {
+      $oidc->setCodeChallengeMethod('S256');
+    }
 
     $redirect_uri = $g_path . 'oidc.html';
 

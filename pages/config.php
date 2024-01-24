@@ -25,8 +25,15 @@ $t_username_claim = plugin_config_get('username_claim');
     <input type="text" class="form-control" name="client_secret" id="client_secret" placeholder="Client Secret" value="<?php echo string_attribute($t_client_secret); ?>" />
   </div>
   <div class="form-group">
-    <label for="username_claim">Sub Claim</label>
-    <input type="text" class="form-control" name="username_claim" id="username_claim" placeholder="Sub Claim" value="<?php echo string_attribute($t_username_claim); ?>" />
+    <label for="username_claim">Username Claim</label>
+    <input type="text" class="form-control" name="username_claim" id="username_claim" placeholder="Username Claim" value="<?php echo string_attribute($t_username_claim); ?>" />
+  </div>
+  <div class="form-group">
+    <label for="scope">Auth Mode</label>
+    <select class="form-control" name="auth_mode" id="auth_mode">
+      <option value="basic" <?php echo plugin_config_get('auth_mode') == 'basic' ? 'selected' : ''; ?>>Basic</option>
+      <option value="pkce" <?php echo plugin_config_get('auth_mode') == 'pkce' ? 'selected' : ''; ?>>PKCE</option>
+    </select>
   </div>
   <div class="form-group">
     <label for="redirect_uri">Redirect URI</label>
